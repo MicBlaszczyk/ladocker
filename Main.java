@@ -1,11 +1,9 @@
 import java.sql.*;
 import java.util.Scanner;
-java.util.concurrent.TimeUnit
 
 class Main {
     public static void main(String args[])
     {
-        TimeUnit.SECONDS.sleep(15);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://mysql:3306/mydb", "mbl", "root");
