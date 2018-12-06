@@ -6,7 +6,7 @@ class Main {
     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://mysql:3306/mydb", "mbl", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://pwcho2018-83722:3306/mydb", "mblaszczyk", "root");
             Statement statement = conn.createStatement();
 
             String ct = "CREATE TABLE IF NOT EXISTS users (username VARCHAR(30), password VARCHAR(30), name VARCHAR(30));";
