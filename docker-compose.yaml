@@ -2,43 +2,32 @@ version: "3.1"
 
 services:
   mysql:
-    image: mysql:5.7
-    container_name: mysql
-    volumes:
-      - mysql-volume:/var/lib/mysql
+    image: mysql
+    container_name: pwcho2018-83722
     networks:
-      - db
+      bridge_zadanie_1:
+        ipv4_address: 10.0.10.3
     ports:
       - "13306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db
-      MYSQL_USER: glamhoth
-      MYSQL_PASSWORD: docker
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: mbl
+      MYSQL_PASSWORD: root
+      
   java:
-    build: ./java-container
-    image: glamhoth/java:8
+    image: michalblaszczykpollub/lab6apache
     container_name: java
     restart: always
-    environment:
-      database__client: mysql
-      database__connection__host: mysql
-      database__connection__user: glamhoth
-      database__connection__password: docker
-      database__connection__database: db
     depends_on:
       - mysql
     networks:
-      - db
+      bridge_zadanie_1:
+        ipv4_address: 10.0.10.4
     ports:
       - "8081:8080"
-    # entrypoint: ["wait.sh", "mysql", "--", "dupa.sh"]
-    # command: ["java", "-cp", ".:mysql-connector-java-8.0.13.jar", "Main"]
-    # command: ["echo", "dupsko"]
-
-volumes:
-  mysql-volume:
 
 networks:
-  db:
+  bridge_zadanie_1:
+    driver: bridge
 
