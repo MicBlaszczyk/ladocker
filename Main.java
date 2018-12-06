@@ -49,7 +49,8 @@ class Main {
             }
 
             while(true)
-            { }
+            {                 System.out.print("#");
+}
         }
         catch(Exception e)
         {
