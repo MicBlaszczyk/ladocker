@@ -34,6 +34,9 @@ class Main {
                 String name = rs.getString("name");
                 System.out.print(username + " " + password + " " + name + "\n");
             }
+            while(true){
+                //nieskonczona petla zapobiegajaca restartom kontenera
+            }
         }
         catch(Exception e){
             //jeśli coś się nie powiedzie błąd zostanie przechwycony
