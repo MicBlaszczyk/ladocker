@@ -2,33 +2,27 @@ import java.sql.*;
 import java.util.Scanner;
 
 class Main {
-    public static void main(String args[])
-    {
+    public static void main(String args[]){
         try {
+            //połączenie z bazą
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://pwcho2018-83722:3306/mydb", "mblaszczyk", "root");
             Statement statement = conn.createStatement();
-
+            
+            //tworzenie tabeli
             String ct = "CREATE TABLE IF NOT EXISTS users (username VARCHAR(30), password VARCHAR(30), name VARCHAR(30));";
             statement.executeUpdate(ct);
 
-            String dr = "DELETE FROM users";
-            statement.executeUpdate(dr);
-
-            String username1 = "ziemniaki";
-            String password1 = "pyrki";
-            String name1 = "Filip";
-
-            String username2 = "cebula";
-            String password2 = "cebulka1";
-            String name2 = "Piotr";
-
-            String query1 = "INSERT INTO users VALUES('"+username1+"', '"+password1+"', '"+name1+"');";
-            statement.executeUpdate(query1);
-
-            String query2 = "INSERT INTO users VALUES('"+username2+"', '"+password2+"', '"+name2+"');";
-            statement.executeUpdate(query2);
-
+            //uzupełnianie tabeli
+            for(int i=0; i<3; i++){
+                String username = "user";
+                String password = "pass";
+                String name1 = "name";
+                String query1 = "INSERT INTO users VALUES('"+username+"', '"+password+"', '"+name+"');";
+                statement.executeUpdate(query);
+            }
+            
+            //wyświetlanie tabeli
             String query = "select * from users;";
             ResultSet rs = statement.executeQuery(query);
 
@@ -38,21 +32,12 @@ class Main {
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 String name = rs.getString("name");
-
-                System.out.print(username);
-                System.out.print(", ");
-                System.out.print(password);
-                System.out.print(", ");
-                System.out.println(name);
+                System.out.print(username + " " + password + " " + name + "\n");
             }
-
-            while(true)
-            {                 System.out.print("#");
-}
         }
-        catch(Exception e)
-        {
-
+        catch(Exception e){
+            //jeśli coś się nie powiedzie błąd zostanie przechwycony
+            System.out.print("Exception :( ");
         }
     }
 }
