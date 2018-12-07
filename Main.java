@@ -8,7 +8,7 @@ class Main {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://pwcho2018-83722:3306/mydb", "mblaszczyk", "root");
             Statement statement = conn.createStatement();
-            
+
             //tworzenie tabeli
             String ct = "CREATE TABLE IF NOT EXISTS users (username VARCHAR(30), password VARCHAR(30), name VARCHAR(30));";
             statement.executeUpdate(ct);
@@ -17,11 +17,11 @@ class Main {
             for(int i=0; i<3; i++){
                 String username = "user";
                 String password = "pass";
-                String name1 = "name";
-                String query1 = "INSERT INTO users VALUES('"+username+"', '"+password+"', '"+name+"');";
+                String name = "name";
+                String query = "INSERT INTO users VALUES('"+username+"', '"+password+"', '"+name+"');";
                 statement.executeUpdate(query);
             }
-            
+
             //wyświetlanie tabeli
             String query = "select * from users;";
             ResultSet rs = statement.executeQuery(query);
