@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  mysql:
+    image: mysql
+    container_name: pwcho2018-83722
+    ports: 
+      - '13306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=mblaszczyk
+      - MYSQL_PASSWORD=root
+    networks:
+      bridge_zadanie_1:
+        ipv4_address: 10.0.10.3
+  java:
+    image: michalblaszczykpollub/ladocker
+    container_name: java
+    depends_on:
+      - mysql
+    restart: always
+    ports:
+     - "8081:8080"
+    networks:
+      bridge_zadanie_1:
+        ipv4_address: 10.0.10.4
+
+networks:
+  bridge_zadanie_1:
+    driver: bridge
+
